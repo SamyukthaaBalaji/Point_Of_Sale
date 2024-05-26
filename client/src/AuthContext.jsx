@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       if (userdet.role === "admin") {
         setIsAdmin(true);
       }
-      setUser(userdet.first_name);
+      setUser(userdet);
       setSignedIn(true);
       localStorage.setItem("token", token);
     } catch (error) {
@@ -42,7 +42,9 @@ export const AuthProvider = ({ children }) => {
 
   const addToCart = async (product, quantity) => {
     setCart((prevCart) => {
-      const existingProductIndex = prevCart.findIndex((item) => item.id === product.id);
+      const existingProductIndex = prevCart.findIndex(
+        (item) => item.id === product.id
+      );
       if (existingProductIndex !== -1) {
         const updatedCart = [...prevCart];
         updatedCart[existingProductIndex].quantity += quantity;
@@ -53,10 +55,10 @@ export const AuthProvider = ({ children }) => {
       }
     });
     try {
-      const response = await fetch('http://localhost:9000/cart/addtocart', {
-        method: 'POST',
+      const response = await fetch("http://localhost:9000/cart/addtocart", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           product_id: product.id,
@@ -66,11 +68,11 @@ export const AuthProvider = ({ children }) => {
           quantity,
         }),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const data = await response.json();
       console.log("Product added to cart in backend:", data);
     } catch (error) {
@@ -92,9 +94,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 

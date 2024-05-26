@@ -1,114 +1,105 @@
-// Dashboard.js
-import React from "react";
-import {
-  BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsFillBellFill,
-} from "react-icons/bs";
-import {
-  BarChart,
-  Bar,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-} from "recharts";
+import * as React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { PieChart } from "@mui/x-charts/PieChart";
+import { LineChart } from "@mui/x-charts/LineChart";
+import "./dashboard.css";
 
-function Dashboard() {
-  const data = [
-    { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
-    { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
-    { name: "Page C", uv: 2000, pv: 9800, amt: 2290 },
-    { name: "Page D", uv: 2780, pv: 3908, amt: 2000 },
-    { name: "Page E", uv: 1890, pv: 4800, amt: 2181 },
-    { name: "Page F", uv: 2390, pv: 3800, amt: 2500 },
-    { name: "Page G", uv: 3490, pv: 4300, amt: 2100 },
-  ];
-
+const Dashboard = () => {
   return (
-    <main className="main-container">
-      <div className="main-title">
-        <h3>DASHBOARD</h3>
-      </div>
-
-      <div className="main-cards">
-        <div className="card">
-          <div className="card-inner">
-            <h3>PRODUCTS</h3>
-            <BsFillArchiveFill className="card_icon" />
-          </div>
-          <h1>300</h1>
+    <div className="dashboard">
+      <div className="top-boxes">
+        <div className="box">
+          <h3>Users</h3>
+          <p>13</p>
         </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>CATEGORIES</h3>
-            <BsFillGrid3X3GapFill className="card_icon" />
-          </div>
-          <h1>12</h1>
+        <div className="box">
+          <h3>Products</h3>
+          <p>115</p>
         </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>CUSTOMERS</h3>
-            <BsPeopleFill className="card_icon" />
-          </div>
-          <h1>33</h1>
+        <div className="box">
+          <h3>Sales</h3>
+          <p>10</p>
         </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>ALERTS</h3>
-            <BsFillBellFill className="card_icon" />
-          </div>
-          <h1>42</h1>
+        <div className="box">
+          <h3>Category</h3>
+          <p>5</p>
         </div>
       </div>
-
-      <div className="charts">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="charts-container ">
+        <div className="chart-container bar-chart align">
           <BarChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
-        </ResponsiveContainer>
-
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="pv"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
+            xAxis={[
+              {
+                scaleType: "band",
+                data: [
+                  "Jan",
+                  "Feb",
+                  "Mar",
+                  "Apr",
+                  "May",
+                  "Jun",
+                  "Jul",
+                  "Aug",
+                  "Sep",
+                  "Oct",
+                  "Nov",
+                  "Dec",
+                ],
+              },
+            ]}
+            series={[{ data: [1, 2, 1, 3, 2, 1, 4, 5, 2, 1, 2, 3] }]}
+            width={1000}
+            height={490}
+          />
+        </div>
+        <div className="pie-charts">
+          <div className="chart-container pie-chart align">
+            <PieChart
+              series={[
+                {
+                  data: [
+                    { id: 0, value: 40, label: "Groceries" },
+                    { id: 1, value: 15, label: "Electronics" },
+                    { id: 2, value: 20, label: "Clothing" },
+                    { id: 2, value: 20, label: "Home Appliances" },
+                    { id: 2, value: 20, label: "Toys" },
+                  ],
+                },
+              ]}
+              width={550}
+              height={300}
             />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
+          </div>
+          <div className="chart-container pie-chart align">
+            <PieChart
+              series={[
+                {
+                  data: [
+                    { id: 0, value: 62, label: "% Sold" },
+                    { id: 1, value: 38, label: "% UnSold" },
+                  ],
+                },
+              ]}
+              width={550}
+              height={300}
+            />
+          </div>
+        </div>
       </div>
-    </main>
+      <div className="chart-container line-chart align">
+        <LineChart
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          series={[
+            {
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
+            },
+          ]}
+          width={1000}
+          height={500}
+        />
+      </div>
+    </div>
   );
-}
+};
 
 export default Dashboard;

@@ -43,13 +43,19 @@ const Products = () => {
     setQuantities(newQuantities);
   };
 
-  const handleAddToCart = (product, quantity) => {
-    if (quantity > 0) {
-      addToCart(product, quantity);
-      toast.success(`${product.name} added to cart!`);
-    }
-    
+  const handleAddToCart = () => {
+    products.forEach((product, index) => {
+      if (quantities[index] > 0) {
+        addToCart(product, quantities[index]);
+        toast.success(`${product.name} added to cart!`);
+      }
+    });
+    setQuantities(Array(products.length).fill(0)); // Reset quantities after adding to cart
   };
+
+  const incrementedProducts = products.filter(
+    (_, index) => quantities[index] > 0
+  );
 
   return (
     <div className="d-flex">
@@ -67,7 +73,9 @@ const Products = () => {
                 )}
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">Description: {product.description}</p>
+                  <p className="card-text">
+                    Description: {product.description}
+                  </p>
                   <p className="card-text">Price: ${product.price}</p>
                   <p className="card-text">Quantity: {quantities[index]}</p>
                   <div className="d-flex justify-content-between align-items-center">
@@ -83,18 +91,28 @@ const Products = () => {
                     >
                       +
                     </button>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => handleAddToCart(product, quantities[index])}
-                    >
-                      <FaShoppingCart /> ADD TO CART
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </div>
+      <div className="cart-sidebar">
+        <h4>Cart</h4>
+        {incrementedProducts.length > 0 ? (
+          incrementedProducts.map((product, index) => (
+            <div key={product.id} className="cart-item">
+              <span>{product.name}</span>
+              <span>Quantity: {quantities[products.indexOf(product)]}</span>
+            </div>
+          ))
+        ) : (
+          <p>No items added</p>
+        )}
+        <button className="btn btn-secondary mt-3" onClick={handleAddToCart}>
+          <FaShoppingCart /> Add All to Cart
+        </button>
       </div>
     </div>
   );

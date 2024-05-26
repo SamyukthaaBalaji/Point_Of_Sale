@@ -230,3 +230,16 @@
 .btn-primary:hover {
   background-color: #0069d9;
 }
+
+.cart-sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

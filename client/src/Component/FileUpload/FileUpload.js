@@ -6,27 +6,36 @@ import { ToastContainer, toast } from "react-toastify";
 const FileUpload = () => {
   const { products, setProducts } = useContext(ProductsContext);
   const [name, setName] = useState("");
-  const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [image, setImage] = useState(null);  
+  const [image, setImage] = useState(null);
   const [idToDelete, setIdToDelete] = useState("");
+
+  const categories = [
+    "Electronics",
+    "Clothing",
+    "Home Appliances",
+    "Groceries",
+    "Toys",
+  ];
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("brand", brand);
+    formData.append("category", category);
     formData.append("description", description);
     formData.append("price", price);
     formData.append("quantity", quantity);
     formData.append("image", image);
-  
+
     try {
       const response = await fetch(
         "http://localhost:9000/product/postproduct",
@@ -35,17 +44,17 @@ const FileUpload = () => {
           body: formData,
         }
       );
-      
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-  
+
       const newProduct = await response.json();
       console.log(newProduct);
       setProducts([...products, newProduct]);
-  
+
       setName("");
-      setBrand("");
+      setCategory("");
       setDescription("");
       setPrice("");
       setQuantity("");
@@ -66,12 +75,14 @@ const FileUpload = () => {
           method: "DELETE",
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-  
-      setProducts(products.filter((product) => product.id !== parseInt(idToDelete)));
+
+      setProducts(
+        products.filter((product) => product.id !== parseInt(idToDelete))
+      );
       setIdToDelete("");
       toast.success("Product deleted successfully");
     } catch (error) {
@@ -79,7 +90,7 @@ const FileUpload = () => {
       toast.error("Error deleting product");
     }
   };
-  
+
   return (
     <div className="centered">
       <form onSubmit={handleSubmit} className="form">
@@ -92,12 +103,18 @@ const FileUpload = () => {
           />
         </div>
         <div>
-          <label>Brand</label>
-          <input
-            type="text"
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-          />
+          <label>Category</label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Select Category</option>
+            {categories.map((cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label>Description</label>
@@ -149,6 +166,7 @@ const FileUpload = () => {
         </div>
         <button type="submit">Update</button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

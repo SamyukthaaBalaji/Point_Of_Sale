@@ -60,11 +60,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
   const { user, logout } = useAuth();
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  console.log("NavBar user:", user);
-  const userName = user ? user.first_name : "";
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -109,20 +109,24 @@ export default function NavBar() {
               logout();
             }}
           >
-            <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               Logout
             </Link>
           </MenuItem>
         </>
       ) : (
         <>
-          <button className="button-28">Login</button>
+          <Link to="/login" className="button-28">
+            Login
+          </Link>
         </>
       )}
-      
     </Menu>
   );
-  
+
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
