@@ -1,6 +1,7 @@
 .dashboard {
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: #022242;
+  margin-left: 60px;
 }
 
 .top-boxes {
@@ -37,6 +38,7 @@
 
 .charts-container {
   display: flex;
+  background-color: #022242;
   justify-content: space-between;
   margin-bottom: 20px;
 }
@@ -47,6 +49,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
+  flex-direction: column;
 }
 
 .bar-chart {
@@ -105,4 +108,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
+}
+
+.bag {
+  align-self: start;
 }
