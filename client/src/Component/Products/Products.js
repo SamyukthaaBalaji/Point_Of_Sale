@@ -58,45 +58,41 @@ const Products = () => {
   );
 
   return (
-    <div className="d-flex">
-      <div className="container">
-        <div className="row">
-          {products.map((product, index) => (
-            <div className="col-md-4" key={product.id}>
-              <div className="card mb-4">
-                {product.image && (
-                  <img
-                    src={`http://localhost:9000${product.image}`}
-                    alt={product.name}
-                    className="card-img-top"
-                  />
-                )}
-                <div className="card-body">
-                  <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">
-                    Description: {product.description}
-                  </p>
-                  <p className="card-text">Price: ${product.price}</p>
-                  <p className="card-text">Quantity: {quantities[index]}</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <button
-                      className="btn btn-secondary"
-                      onClick={() => handleDecrement(index)}
-                    >
-                      -
-                    </button>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={() => handleIncrement(index)}
-                    >
-                      +
-                    </button>
-                  </div>
+    <div className="products-container">
+      <div className="products-grid">
+        {products.map((product, index) => (
+          <div className="product-card" key={product.id}>
+            <div className="card mb-4">
+              {product.image && (
+                <img
+                  src={`http://localhost:9000${product.image}`}
+                  alt={product.name}
+                  className="card-img-top"
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Description: {product.description}</p>
+                <p className="card-text">Price: ${product.price}</p>
+                <p className="card-text">Quantity: {quantities[index]}</p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleDecrement(index)}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleIncrement(index)}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
       <div className="cart-sidebar">
         <h4>Cart</h4>
@@ -114,6 +110,7 @@ const Products = () => {
           <FaShoppingCart /> Add All to Cart
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

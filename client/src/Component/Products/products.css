@@ -148,10 +148,25 @@
 /* Card container styles */
 .products-container {
   display: flex;
+}
+
+.products-grid {
+  display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* Add some space between the cards */
-  justify-content: flex-start; /* Align cards to the start */
-  margin: 2rem 2rem 2rem 300px; /* Adjust margins to make space for the sidebar */
+  gap: 20px;
+  margin: 5%;
+  margin-left: 10%;
+}
+
+.product-card {
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.cart-sidebar {
+  width: 500px;
+  padding: 20px;
+  border-left: 1px solid #ccc;
 }
 
 .card {

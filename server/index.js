@@ -16,6 +16,7 @@ const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const dashRoute = require("./routes/dashboard");
+const order = require("./routes/orders");
 
 // Passport configuration
 passport.use(
@@ -66,6 +67,7 @@ app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);
 app.use("/dash", dashRoute);
+app.use("/order", order);
 
 function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);

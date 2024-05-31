@@ -29,3 +29,21 @@ CREATE TABLE cart (
     quantity INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
+
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  parent_order_id INT REFERENCES orders(id),
+  customer_name VARCHAR(100),
+  customer_number VARCHAR(20),
+  customer_address TEXT,
+  payment_method VARCHAR(20),
+  subtotal NUMERIC,
+  tax NUMERIC,
+  grand_total NUMERIC,
+  product_id INT,
+  product_name VARCHAR(255),
+  quantity INT,
+  price NUMERIC,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

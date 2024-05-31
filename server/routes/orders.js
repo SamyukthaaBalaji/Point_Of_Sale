@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../db.js");
-
+const pool = require("../db");
 router.post("/create", async (req, res) => {
   const {
     customerName,
@@ -14,16 +13,23 @@ router.post("/create", async (req, res) => {
     grandTotal,
   } = req.body;
 
+  // Extract product details
+  const productNames = cart.map((item) => item.name);
+  const quantities = cart.map((item) => item.quantity);
+  const prices = cart.map((item) => item.price);
+
   try {
     const client = await pool.connect();
 
     try {
       await client.query("BEGIN");
 
-      // Insert order details
       const insertOrderQuery = `
-        INSERT INTO orders (customer_name, customer_number, customer_address, payment_method, subtotal, tax, grand_total)
-        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id
+        INSERT INTO orders (
+          customer_name, customer_number, customer_address, payment_method,
+          subtotal, tax, grand_total, product_names, quantities, prices
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id
       `;
       const result = await client.query(insertOrderQuery, [
         customerName,
@@ -33,23 +39,10 @@ router.post("/create", async (req, res) => {
         subtotal,
         tax,
         grandTotal,
+        productNames,
+        quantities,
+        prices,
       ]);
-      const orderId = result.rows[0].id;
-
-      // Insert order items
-      const insertOrderItemsQuery = `
-        INSERT INTO order_items (order_id, product_id, product_name, quantity, price)
-        VALUES ($1, $2, $3, $4, $5)
-      `;
-      for (const item of cart) {
-        await client.query(insertOrderItemsQuery, [
-          orderId,
-          item.id,
-          item.product_name, // Assuming your cart item has a "product_name" property
-          item.quantity,
-          item.price,
-        ]);
-      }
 
       await client.query("COMMIT");
       res.status(201).json({ message: "Order created successfully" });
@@ -65,5 +58,4 @@ router.post("/create", async (req, res) => {
     res.status(500).json({ error: "Database connection error" });
   }
 });
-
 module.exports = router;

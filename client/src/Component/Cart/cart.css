@@ -1,0 +1,10 @@
+/* CustomStyles.css */
+.modal-dialog-custom {
+  max-width: 80%;
+  width: 80%;
+}
+
+.modal-content-custom {
+  height: 80vh;
+  overflow-y: auto;
+}

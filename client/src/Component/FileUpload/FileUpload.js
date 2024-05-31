@@ -19,6 +19,11 @@ const FileUpload = () => {
     "Home Appliances",
     "Groceries",
     "Toys",
+    "Fruits",
+    "Vegetables",
+    "Books",
+    "Phones/Tablets",
+    "Furniture",
   ];
 
   const handleFileChange = (e) => {
