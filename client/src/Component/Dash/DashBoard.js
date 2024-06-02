@@ -18,26 +18,26 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const usersCountResponse = await fetch(
-          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/dash/allusers"
+          "https://posapp1-hg6w.vercel.app/dash/allusers"
         );
         const usersCountData = await usersCountResponse.json();
         console.log(usersCountData);
         setUsersCount(usersCountData.count);
 
         const productCountResponse = await fetch(
-          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/dash/allproducts"
+          "https://posapp1-hg6w.vercel.app/dash/allproducts"
         );
         const productCountData = await productCountResponse.json();
         setProductsCount(productCountData.count);
 
         const categoryCountsResponse = await fetch(
-          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/dash/category-counts"
+          "https://posapp1-hg6w.vercel.app/dash/category-counts"
         );
         const categoryCountsData = await categoryCountsResponse.json();
         setCategoryData(categoryCountsData);
 
         const totalCategoriesResponse = await fetch(
-          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/dash/total-categories"
+          "https://posapp1-hg6w.vercel.app/dash/total-categories"
         );
         const totalCategoriesData = await totalCategoriesResponse.json();
 

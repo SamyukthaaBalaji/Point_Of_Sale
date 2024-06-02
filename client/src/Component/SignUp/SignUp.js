@@ -130,7 +130,7 @@ export default function SignUp() {
             variant="contained"
             color="default"
             className={classes.googleButton}
-            href="https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/auth/google" // Ensure the href points to the correct backend endpoint
+            href="https://posapp1-hg6w.vercel.app/auth/google" // Ensure the href points to the correct backend endpoint
           >
             Sign Up with Google
           </Button>

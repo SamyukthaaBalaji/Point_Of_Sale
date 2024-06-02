@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (token) => {
     try {
       const response = await fetch(
-        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/user/profile",
+        "https://posapp1-hg6w.vercel.app/user/profile",
         {
           headers: { authorization: token },
         }
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     });
     try {
       const response = await fetch(
-        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/cart/addtocart",
+        "https://posapp1-hg6w.vercel.app/cart/addtocart",
         {
           method: "POST",
           headers: {

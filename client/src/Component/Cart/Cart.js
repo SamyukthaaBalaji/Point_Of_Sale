@@ -42,7 +42,7 @@ const Cart = () => {
   const handleDelete = async (itemId) => {
     try {
       const response = await fetch(
-        `https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/cart/delcart/${itemId}`,
+        `https://posapp1-hg6w.vercel.app/cart/delcart/${itemId}`,
         {
           method: "DELETE",
           headers: {
@@ -98,7 +98,7 @@ const Cart = () => {
 
     try {
       const response = await fetch(
-        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/order/create",
+        "https://posapp1-hg6w.vercel.app/order/create",
         {
           method: "POST",
           headers: {
@@ -179,7 +179,7 @@ const Cart = () => {
               <TableRow key={item.id}>
                 <TableCell>
                   <img
-                    src={`https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app${item.image}`}
+                    src={`https://posapp1-hg6w.vercel.app${item.image}`}
                     alt={item.name}
                     style={{ width: "50px" }}
                   />

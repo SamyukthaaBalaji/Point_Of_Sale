@@ -52,7 +52,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/user/login",
+        "https://posapp1-hg6w.vercel.app/user/login",
         {
           method: "POST",
           headers: {

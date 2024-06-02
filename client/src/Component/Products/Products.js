@@ -14,7 +14,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/product/products"
+          "https://posapp1-hg6w.vercel.app/product/products"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -67,7 +67,7 @@ const Products = () => {
             <div className="card mb-4">
               {product.image && (
                 <img
-                  src={`https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app${product.image}`}
+                  src={`https://posapp1-hg6w.vercel.app${product.image}`}
                   alt={product.name}
                   className="card-img-top"
                 />
