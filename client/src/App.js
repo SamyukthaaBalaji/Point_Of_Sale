@@ -41,7 +41,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/shop" element={<Products />} />
             <Route path="/file" element={<FileUpload />} />
-            <Route path="/cart" element={<Cart />} />
+
             <Route path="/invoice" element={<Invoice />} />
           </Routes>
         </Router>

@@ -18,9 +18,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (token) => {
     try {
-      const response = await fetch("http://localhost:9000/user/profile", {
-        headers: { authorization: token },
-      });
+      const response = await fetch(
+        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/user/profile",
+        {
+          headers: { authorization: token },
+        }
+      );
       const data = await response.json();
       const userdet = data.user.rows[0];
       if (userdet.role === "admin") {
@@ -55,19 +58,22 @@ export const AuthProvider = ({ children }) => {
       }
     });
     try {
-      const response = await fetch("http://localhost:9000/cart/addtocart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          product_id: product.id,
-          product_name: product.name,
-          price: product.price,
-          image: product.image,
-          quantity,
-        }),
-      });
+      const response = await fetch(
+        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/cart/addtocart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            product_id: product.id,
+            product_name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

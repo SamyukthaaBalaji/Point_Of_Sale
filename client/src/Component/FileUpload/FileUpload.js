@@ -43,7 +43,7 @@ const FileUpload = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:9000/product/postproduct",
+        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/product/postproduct",
         {
           method: "POST",
           body: formData,
@@ -75,7 +75,7 @@ const FileUpload = () => {
     console.log("Deleting product with ID:", idToDelete); // Check if ID is correct
     try {
       const response = await fetch(
-        `http://localhost:9000/product/delproducts/${idToDelete}`,
+        `https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/product/delproducts/${idToDelete}`,
         {
           method: "DELETE",
         }

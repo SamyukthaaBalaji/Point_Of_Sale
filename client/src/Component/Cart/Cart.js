@@ -42,7 +42,7 @@ const Cart = () => {
   const handleDelete = async (itemId) => {
     try {
       const response = await fetch(
-        `http://localhost:9000/cart/delcart/${itemId}`,
+        `https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/cart/delcart/${itemId}`,
         {
           method: "DELETE",
           headers: {
@@ -97,13 +97,16 @@ const Cart = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:9000/order/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(
+        "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/order/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -176,7 +179,7 @@ const Cart = () => {
               <TableRow key={item.id}>
                 <TableCell>
                   <img
-                    src={`http://localhost:9000${item.image}`}
+                    src={`https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app${item.image}`}
                     alt={item.name}
                     style={{ width: "50px" }}
                   />

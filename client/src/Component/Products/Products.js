@@ -13,7 +13,9 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:9000/product/products");
+        const response = await fetch(
+          "https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app/product/products"
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -65,7 +67,7 @@ const Products = () => {
             <div className="card mb-4">
               {product.image && (
                 <img
-                  src={`http://localhost:9000${product.image}`}
+                  src={`https://posapp1-hg6w-kpues2kdx-samyukthaas-projects.vercel.app${product.image}`}
                   alt={product.name}
                   className="card-img-top"
                 />
