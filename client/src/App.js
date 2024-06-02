@@ -21,7 +21,6 @@ import { ProductsProvider } from "./ProductContext";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Invoice from "./Component/Invoice/Invoice";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -41,8 +40,6 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/shop" element={<Products />} />
             <Route path="/file" element={<FileUpload />} />
-
-            <Route path="/invoice" element={<Invoice />} />
           </Routes>
         </Router>
       </ProductsProvider>
